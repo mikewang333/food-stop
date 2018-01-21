@@ -106,8 +106,6 @@ class Relation:
 		self.distance = info['distance']['value']
 		#all steps
 		self.steps = info['steps']
-		print('hello')
-
 
 	def get_distance(self):
 		return self.distance
@@ -223,8 +221,6 @@ def submitted_form():
 	place_relation = Relation(start, destination)
 	eat_lat, eat_lng = place_relation.get_location_at_time(timetoeat)
 	place_lst = yelp_api_set_rating_url_review_text(timetoeat, eat_lat, eat_lng)
-	print(start)
-	print(destination)
 	return render_template(
     'submittedform.html',
     start=start,
@@ -236,6 +232,16 @@ def first_map():
 	# lst = here.search_query(x,x,x,x)
 	#make dict out of list
 	#take first 5
+	# d = {}
+	# for i in range(len(restaurant_list)):
+	# 	d["place{0}".format(i)] = restaurant_list[i]
+	# 	d["place{0}_name".format(i)] = d["place{0}".format(i)].get_name()
+	# 	d["place{0}_image".format(i)] = d["place{0}".format(i)].get_image()
+	# 	d["place{0}_review_num".format(i)] = d["place{0}".format(i)].get_review_num()
+	# 	d["place{0}_rating".format(i)] = d["place{0}".format(i)].get_rating()
+	# 	d["place{0}_url".format(i)] = d["place{0}".format(i)].get_url()
+	# 	d["place{0}_stars".format(i)] = star_url(d["place{0}_rating".format(i)])
+	# 	print(d['place1_name'])
     place1 = place_lst[0]
     place2 = place_lst[1]
     place3 = place_lst[2]
@@ -271,8 +277,7 @@ def first_map():
     place3_stars = star_url(place3_rating)
     place4_stars = star_url(place4_rating)
     place5_stars = star_url(place5_rating)
-
-
+    
     return render_template('mapinterface.html',
     place1_name = place1_name,
     place2_name = place2_name,
@@ -299,4 +304,4 @@ def first_map():
     place3_stars = place3_stars,
     place4_stars = place4_stars,
     place5_stars = place5_stars
-    )
+	)
