@@ -1,0 +1,67 @@
+<meta name="viewport" content="width = device-width, initial-scale = 1">
+<link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/superhero/bootstrap.min.css">
+<style>
+input {
+  margin-top: 0.25em;
+  margin-bottom: 0.5em;
+}
+</style>
+<html>
+  <head>
+    <title>Welcome to FoodStop!</title>
+  </head>
+  <body>
+    <div class="container">
+      <br><br>
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-12">
+              <center><h1>Where can we take you?</h1></center>
+            </div>
+          </div>
+          <form method="post" action="{{ url_for('submitted_form') }}">
+          <div class="row">
+            <div class="col-md-12">
+              <label for="place1">Start</label>
+              <input type="text" class="form-control" id="place1" name="place1" placeholder="San Francisco">
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-12">
+              <label for="place2">Destination</label>
+              <input type="text" class="form-control" name="place2" placeholder="Seattle">
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-12">
+              <label for="timetoeat">Time To Eat</label>
+        <input id="time" class="form-control" type="time" name="timetoeat">
+            </div>
+          </div>
+          <br>        
+          <div class="row">
+            <div class="col-md-12">
+              <input type="submit" class="btn btn-block btn-primary">
+            </div>
+          </div> 
+          
+          </form>
+        </div>
+      </div>
+    </div>
+
+        
+          
+          
+        </div>
+        </form>
+      </div>
+    </div>
+  </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</html>

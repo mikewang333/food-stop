@@ -1,0 +1,37 @@
+<html>
+<style>
+.col-md-6 {
+  margin: 5 auto;
+}
+h1 {
+  text-align: center;
+}
+</style>
+ <head>
+  <title>Confirm Information</title>
+  <meta name="viewport" content="width = device-width, initial-scale = 1">
+  <link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/superhero/bootstrap.min.css">
+ </head>
+ <body>
+  <div id="container">
+    <div class="row">
+      <div class="col-md-6">
+      <h1>Thanks for your submission</h1>
+       <div id="main">
+         <p>Here's a review of the information:</p>
+         <p>
+            <strong>Start</strong>: {{place1}} <br>
+            <strong>Destination</strong>: {{place2}} <br>
+            <strong>Time to eat</strong>: {{timetoeat}} <br>
+
+            </p>
+
+            <form method="post" action="{{ url_for('first_map') }}">
+          <input type="submit" class="btn btn-block btn-primary">
+         </form>
+        </div>
+      </div>
+     </div>
+   </div>
+ </body>
+</html>

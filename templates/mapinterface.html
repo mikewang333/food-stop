@@ -1,0 +1,129 @@
+<style>
+.boxed {
+	margin: 5 auto;
+	padding: 5px;
+	text-align: center;
+	background-color: transparent;
+    font-size: 20;
+    border: 5px solid black;
+    border-radius: 10px;
+	width: 45%;
+    height: 45%;
+    border-color: #357EC7;
+} 
+.btn btn-block btn-primary {
+	font-size: 12;
+	background-color: transparent;
+	border-radius: 5px;
+	margin-bottom: 5px;
+}
+.yelpseemore {
+	font-size: 9;
+}
+.yelpstars {
+	padding-right: 10px;
+}
+.reviewstext {
+	color: gray;
+	font-size: 9;
+}
+#top {
+	margin-bottom: 30px;
+}
+.review {
+	font-size: 12px;
+	width: 215px;
+	height: 215px;
+	overflow: hidden;
+}
+.yelpburst{
+	height: 5%;
+}
+.card border-info mb-3 {
+	text-align: center;
+}
+</style>
+<meta name="viewport" content="width = device-width, initial-scale = 1">
+<link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/superhero/bootstrap.min.css">
+	<div class="container" id="top"> <br><br>
+		<center><h1> Choose Your Places!</h1></center>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="card border-info mb-3" style="max-width: 30rem;">
+				  <div class="card-header"><img class="yelpburst" src="/static/Yelp Burst/Screen/Yelp_burst_positive_RGB.png">Place One</div>
+				  <div class="card-body text-info">
+				    <h5 class="card-title" style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden; text-overflow: ellipsis;">{{place1_name}}</h5>
+				    <img style="height: 200px; width: 200px; overflow: hidden; margin-bottom: 10px;" src="{{place1_image}}" alt="No Yelp Image">
+				    <br>
+				    <image style="margin-bottom: 10px;"src="{{place1_stars}}"><h5 class="card-text">{{place1_review_num}} Reviews</h5>
+				    <button class="btn btn-block btn-primary" type="button">Add Place</button>
+				    <a class="yelpseemore" href="{{place1_url}}"> Learn More!</a>
+				  </div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="card border-info mb-3" style="max-width: 30rem;">
+				  <div class="card-header"><img class="yelpburst" src="/static/Yelp Burst/Screen/Yelp_burst_positive_RGB.png">Place Two</div>
+				  <div class="card-body text-info">
+				    <h5 class="card-title">{{place2_name}}</h5>
+				    <img style="height: 200px; width: 200px; overflow: hidden; margin-bottom: 10px;" src="{{place2_image}}" alt="No Yelp Image">
+				    <br>
+				    <image style="margin-bottom: 10px;"src="{{place2_stars}}"><h5 class="card-text">{{place2_review_num}} Reviews</h5>
+				    <button class="btn btn-block btn-primary" type="button">Add Place</button>
+				    <a class="yelpseemore" href="{{place2_url}}"> Learn More!</a>
+				  </div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="card border-info mb-3" style="max-width: 30rem;">
+				  <div class="card-header"><img class="yelpburst" src="/static/Yelp Burst/Screen/Yelp_burst_positive_RGB.png">Place Three</div>
+				  <div class="card-body text-info">
+				    <h5 class="card-title">{{place3_name}}</h5>
+				    <img style="height: 200px; width: 200px; overflow: hidden; margin-bottom: 10px;" src="{{place3_image}}" alt="No Yelp Image">
+				    <br>
+				    <image style="margin-bottom: 10px;"src="{{place3_stars}}"><h5 class="card-text">{{place3_review_num}} Reviews</h5>
+				    <button class="btn btn-block btn-primary" type="button">Add Place</button>
+				    <a class="yelpseemore" href="{{place3_url}}"> Learn More!</a>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-4">
+				<div class="card border-info mb-3" style="max-width: 30rem;">
+				  <div class="card-header"><img class="yelpburst" src="/static/Yelp Burst/Screen/Yelp_burst_positive_RGB.png">Place Four</div>
+				  <div class="card-body text-info">
+				    <h5 class="card-title">{{place4_name}}</h5>
+				    <img style="height: 200px; width: 200px; overflow: hidden; margin-bottom: 10px;" src="{{place4_image}}" alt="No Yelp Image">
+				    <br>
+				    <image style="margin-bottom: 10px;"src="{{place4_stars}}"><h5 class="card-text">{{place4_review_num}} Reviews</h5>
+				    <button class="btn btn-block btn-primary" type="button">Add Place</button>
+				    <a class="yelpseemore" href="{{place4_url}}"> Learn More!</a>
+				  </div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="card border-info mb-3" style="max-width: 30rem;">
+				  <div class="card-header"><img class="yelpburst" src="/static/Yelp Burst/Screen/Yelp_burst_positive_RGB.png">Place Five</div>
+				  <div class="card-body text-info">
+				    <h5 class="card-title">{{place5_name}}</h5>
+				    <img style="height: 200px; width: 200px; overflow: hidden; margin-bottom: 10px;" src="{{place5_image}}" alt="No Yelp Image">
+				    <br>
+				    <image style="margin-bottom: 10px;"src="{{place5_stars}}"><h5 class="card-text">{{place5_review_num}} Reviews</h5>
+				    <button class="btn btn-block btn-primary" type="button">Add Place</button>
+				    <a class="yelpseemore" href="{{place5_url}}"> Learn More!</a>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<div class="progress">
+  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 25%"></div>
+</div>
+</div>
