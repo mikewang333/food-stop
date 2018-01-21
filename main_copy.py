@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request
 import urllib.request, json
 from datetime import datetime, timedelta
-from math import radians, sin, cos, acos, atan2, sqrt, degrees
 from operator import methodcaller
 
 
@@ -13,10 +12,10 @@ app = Flask(__name__)
 #client ID = OkyFz7f00cpLklJ7lzfEHg
 
 class Place:
-	def __init__(self, name, lat, lon, rating):
+	def __init__(self, name, lat, lng, rating):
 		self.name = name
-		self.latitude = lat
-		self.longitude = lon
+		self.lat = lat
+		self.lng = lng
 		self.rating = rating
 		self.has_rating = False
 		self.review_num = 0
@@ -27,10 +26,10 @@ class Place:
 		return self.name;
 	
 	def get_latitude(self):
-		return self.latitude
+		return self.lat
 	
 	def get_longitude(self):
-		return self.longitude
+		return self.lng
 	
 	def get_rating(self):
 		return self.rating
@@ -58,12 +57,12 @@ class Place:
 		self.image = image
 
 
-	def get_distance(self, destination):
+	"""def get_distance(self, destination):
 		starting_latitude = radians(float(self.latitude))
 		ending_latitude = radians(float(destination.get_latitude()))
 		starting_longitude = radians(float(self.longitude))
 		ending_longitude = radians(float(destination.get_longitude()))
-		return 6371.01 * acos(sin(starting_latitude) * sin(ending_latitude) + cos(starting_latitude) * cos(ending_latitude) * cos(starting_longitude - ending_longitude))
+		return 6371.01 * acos(sin(starting_latitude) * sin(ending_latitude) + cos(starting_latitude) * cos(ending_latitude) * cos(starting_longitude - ending_longitude))"""
 
 	def get_has_rating(self):
 		return self.has_rating
@@ -92,16 +91,12 @@ class Relation:
 		self.start_location_lng = info['start_location']['lng']
 		self.end_location_lat = info['end_location']['lat']
 		self.end_location_lng = info['end_location']['lng']
-		#duration in minutes
-		self.duration = info['duration']['value']/60 
+		#duration in seconds
+		self.duration = info['duration']['value'] 
 		#distance in meters
 		self.distance = info['distance']['value']
 		#all steps
 		self.steps = info['steps']
-
-		print(self.duration)
-		print(self.distance)
-		print(len(self.steps))
 
 
 
@@ -111,19 +106,43 @@ class Relation:
 	def get_duration(self):
 		return self.duration
 
+	def approx_location(self, curr_location_lat, curr_location_lng, next_location_lat, next_location_lng, step_duration, timetilleat):
+		#fraction is the portion we completed of the step
+		fraction = (step_duration / timetilleat)
+		approx_location_lat = ((next_location_lat - curr_location_lat) * fraction) + curr_location_lat 
+		approx_location_lng = ((next_location_lng - curr_location_lng) * fraction) + curr_location_lng
+		return approx_location_lat, approx_location_lng
+
+
+
 	#Finds approximately what latitude,longitude we will be at during the time to eat
 	def get_location_at_time(self, timetoeat):
 		now = datetime.now()
-		diff = timedelta(hours=24) - (now - now.replace(hour=timetoeat.hour, minute=timetoeat.minute, second=timetoeat.second, microsecond=0))
-		diff = (diff.total_seconds() % (24 * 3600))/60
-		if (duration < diff):
-			return self.end_location, self.end_location_lng
+		timetilleat = timedelta(hours=24) - (now - now.replace(hour=timetoeat.hour, minute=timetoeat.minute, second=timetoeat.second, microsecond=0))
+		timetilleat = timetilleat.total_seconds() % (24 * 3600)
+		#if we reach the destination before timetoeat, we eat at the destination!
+		if (self.duration <= timetilleat):
+			return self.end_location_lat, self.end_location_lng
 		else:
-			while 
+			curr_location_lat = self.start_location_lat
+			curr_location_lng = self.start_location_lng
+			for i in range(len(self.steps)):
+				#if we won't make it to the next step, we need to eat food sometime in b/n step
+				step_duration = self.steps[i]['duration']['value']
+				next_location_lat = self.steps[i]['end_location']['lat']
+				next_location_lng = self.steps[i]['end_location']['lng']
+				if step_duration > timetilleat:
+					one,two = self.approx_location(curr_location_lat, curr_location_lng, next_location_lat, next_location_lng, step_duration, timetilleat)
+					print('hey' + str(one) + 'and' + str(two))
+					return 1,2
+				#go to next step!
+				else:
+					curr_location_lat = next_location_lat
+					curr_location_lng = next_location_lng
+					timetilleat -= step_duration
 
 		
-		curr_location_lat = self.start_location_lat
-		curr_location_lng = self.start_location_lng
+
 
 
 
